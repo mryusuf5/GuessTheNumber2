@@ -1,0 +1,85 @@
+body{
+    overflow-x: hidden;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.links_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header_profile_image{
+    background-color: white;
+    border-radius: 100%;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px !important;
+    font-size: 1.125rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#dropdown_button{
+    text-decoration: none;
+}
+.dropdown_menu{
+    transform: translateX(-65px) !important;
+}
+.profile_image{
+    font-size: 6rem;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    background: white;
+}
+.info_container{
+    color: white;
+    font-size: 2rem;
+}
+.info_item input{
+    width: 50% !important;
+}
+.profile_image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.game_button_container button{
+    border-radius: 10px;
+    transition: .5s ease;
+}
+
+.game_button_container button:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 5px gray;
+}
+.guess_message_red{
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.116);
+    border: 1px solid orange;
+    color: orange;
+}
+.guess_message_red2{
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.116);
+    border: 1px solid red;
+    color: red;
+}
+.guess_message_blue2{
+    padding: 10px;
+    background-color: rgba(0, 255, 255, 0.116);
+    border: 1px solid aqua;
+    color: aqua;
+}
+.guess_message_blue{
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.116);
+    border: 1px solid blue;
+    color: blue;
+}
