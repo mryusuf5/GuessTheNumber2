@@ -19,13 +19,13 @@ class Game_model extends CI_MODEL{
         else
         {
             $this->db->query("INSERT INTO game_numbers(number1, number2, user_id, random_num) VALUES($number1, $number2, $user_id, $random_num)");
-        }       
+        }
     }
 
-    public function get_random_num($user_id)
+    public function get_random_num()
     {
         $this->db->select("random_num");
-        $this->db->where("user_id", $user_id);
+        $this->db->where("user_id", $this->session->userdata("user_id"));
         $query = $this->db->get("game_numbers");
 
         return $query->result();

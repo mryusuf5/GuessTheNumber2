@@ -83,3 +83,9 @@ body{
     border: 1px solid blue;
     color: blue;
 }
+.message_green{
+    padding: 10px;
+    background-color: rgba(0, 255, 0, 0.116);
+    border: 1px solid lime;
+    color: lime;
+}

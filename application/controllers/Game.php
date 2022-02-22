@@ -1,4 +1,4 @@
-<!-- <?php 
+<?php 
 
 class Game extends CI_CONTROLLER{
     public function __construct()
@@ -26,20 +26,16 @@ class Game extends CI_CONTROLLER{
         }
         else
         {
-            // $this->load->view("templates/logged_in/header");
-            // $this->load->view("pages/gameplay");
+            $data = ["message" => "You have successfully generated a random number!"];
+            $this->load->view("templates/logged_in/header");
+            $this->load->view("pages/gameplay", $data);
             $this->Game_model->create_game();
-            redirect("gameplay");
-               
-
         }
     }
 
     public function check_number()
     {
-        $this->load->model("Game_model");
-
-        $result = $this->Game_model->get_random_num($this->session->userdata("user_id"));
+        $result = $this->Game_model->get_random_num();
 
         $number = $this->input->post("guessed_number");
 
@@ -49,12 +45,41 @@ class Game extends CI_CONTROLLER{
         }
         else if($number != $result[0]->random_num)
         {
-            $data = [
-                "colder" => "you are getting colder!",
-                "freezing" => "you are FREEZING!",
-                "warmer" => "you are getting warmer!",
-                "burning" => "you are BURNING!",
-            ];
+            
+            $tries = 10;
+            $tries--;
+            $freezing = $result[0]->random_num + 100;
+            $freezing2 = $result[0]->random_num - 100;
+            $colder = $result[0]->random_num + 75;
+            $colder2 = $result[0]->random_num - 75;
+            $warmer = $result[0]->random_num + 30;
+            $warmer2 = $result[0]->random_num - 30;
+            $burning = $result[0]->random_num + 10;
+            $burning2 = $result[0]->random_num - 10;
+            $close = $result[0]->random_num;
+            $close2 = $result[0]->random_num;
+            $data = ["tries" => $tries];
+
+            if($number > $freezing || $number < $freezing2)
+            {
+                $data = ["freezing" => "you are FREEZING!"];
+            }
+            else if($number > $colder || $number < $colder2)
+            {
+                $data = ["colder" => "you are getting colder!"];
+            }
+            else if($number > $warmer || $number < $warmer2)
+            {
+                $data = ["warmer" => "you are getting warmer!"];
+            }
+            else if($number > $burning || $number < $burning2)
+            {
+                $data = ["burning" => "you are BURNING!"];
+            }
+            else if($number > $close || $number < $close2)
+            {
+                $data = ["close" => "you are so close!"];
+            }
 
             $this->load->view("templates/logged_in/header.php");
             $this->load->view("pages/gameplay", $data);
