@@ -107,10 +107,10 @@ body{
     border: 1px solid black;
 }
 .leaderboard_image{
-    width: 205px;
-    height: 205px;
+    width: 140px;
+    height: 140px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    border-radius: 100%;
+    margin: 10px;
 }

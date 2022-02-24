@@ -15,6 +15,8 @@
 
             <label class="form-label" for="number1">Choose how many tries you want.</label>
             <input type="number" name="tries" class="form-control">
+            <small class="text-muted">the maximum amount of tries you can set is 15.</small>
+            <?php if(isset($tries_error)){?><p class="guess_message_red2 text-center"><?php echo $tries_error;?></p><?php }?>
             <br><br>
             <input type="submit" class="btn btn-primary">
         </form>

@@ -26,16 +26,28 @@ class Game extends CI_CONTROLLER{
         }
         else
         {
-            $data = ["message" => "You have successfully generated a random number!"];
-
-            $userdata = [
-                "tries" => $this->input->post("tries")
+            $data = [
+                "message" => "You have successfully generated a random number!",
+                "tries_error" => "Pick a different number of tries!"
             ];
 
-            $this->session->set_userdata($userdata);
-            $this->load->view("templates/logged_in/header");
-            $this->load->view("pages/gameplay", $data);
-            $this->Game_model->create_game();
+            if($this->input->post("tries") <= 15 && $this->input->post("tries") > 0)
+            {
+                $userdata = [
+                    "tries" => $this->input->post("tries")
+                ];
+
+                $this->session->set_userdata($userdata);
+                $this->load->view("templates/logged_in/header");
+                $this->load->view("pages/gameplay", $data);
+                $this->Game_model->create_game();
+            }
+            else
+            {
+                $this->load->view("templates/logged_in/header");
+                $this->load->view("pages/game", $data);
+                $this->Game_model->create_game();
+            }
         }
     }
 
@@ -47,13 +59,24 @@ class Game extends CI_CONTROLLER{
 
         if($number == $result[0]->random_num)
         {
-            $scores["scores"] = $this->Game_model->get_scores();
+            // $scores["scores"] = $this->Game_model->get_scores();
 
+            $single_score = $this->Game_model->get_single_score();
+            
+            if($single_score[0]->highest_score < $this->session->userdata("tries") * 5)
+            {
+                $userdata = [
+                    "score" => $this->session->userdata("tries") * 5
+                ];
+                $this->session->set_userdata($userdata);
+                $this->Game_model->put_scores();
+            }
             $data = [
-                "win" => "Congratulations, you guessed the right number!"
+                "win" => "Congratulations, you guessed the right number!",
+                "scores" => $this->Game_model->get_scores()
             ];
             $this->load->view("templates/logged_in/header.php");
-            $this->load->view("pages/leaderboard", $scores);
+            $this->load->view("pages/leaderboard", $data);
             $this->load->view("templates/footer.php");
         }
         else if($number != $result[0]->random_num)

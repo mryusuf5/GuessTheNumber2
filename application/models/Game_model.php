@@ -34,9 +34,22 @@ class Game_model extends CI_MODEL{
     public function get_scores()
     {
         $this->db->select("*");
-        $this->db->order_by("highest_score", "asc");
+        $this->db->order_by("highest_score", "desc");
         $query = $this->db->get("users");
 
         return $query->result();
+    }
+    public function get_single_score()
+    {
+        $user_id = $this->session->userdata("user_id");
+        $this->db->select("highest_score");
+        $this->db->where("id", $user_id);
+        return $this->db->get("users")->result();
+    }
+    public function put_scores()
+    {
+        $score = $this->session->userdata("score");
+        $user_id = $this->session->userdata("user_id");
+        $this->db->query("UPDATE users SET highest_score = $score WHERE id = $user_id");
     }
 }

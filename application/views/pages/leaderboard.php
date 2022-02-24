@@ -1,12 +1,12 @@
 <br><br>
 <div class="container">
-    <?php if(isset($win)){?><span class="message_green"><?php $win?></span><?php }?>
+    <?php if(isset($win)){?><p class="message_green text-center"><?php echo $win?></p><?php }?>
     <div class="row d-flex justify-content-center">
         <table class="col-8 leaderboard_table">
             <tr>
-                <th>Image</th>
-                <th>Username</th>
-                <th>Score</th>
+                <th class="text-center">Image</th>
+                <th class="text-center">Username</th>
+                <th class="text-center">Score</th>
             </tr>
             <?php foreach($scores as $score){?>
             <tr>
