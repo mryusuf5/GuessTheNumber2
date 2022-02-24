@@ -27,12 +27,6 @@ class Game extends CI_CONTROLLER{
         else
         {
             $data = ["message" => "You have successfully generated a random number!"];
-
-            $userdata = [
-                "tries" => $this->input->post("tries")
-            ];
-
-            $this->session->set_userdata($userdata);
             $this->load->view("templates/logged_in/header");
             $this->load->view("pages/gameplay", $data);
             $this->Game_model->create_game();
@@ -47,27 +41,30 @@ class Game extends CI_CONTROLLER{
 
         if($number == $result[0]->random_num)
         {
-            $scores["scores"] = $this->Game_model->get_scores();
-
-            $data = [
-                "win" => "Congratulations, you guessed the right number!"
+            $score = $this->session->userdata("tries") * 5;
+            $sessiondata = [
+                "score" => $score
             ];
-            $this->load->view("templates/logged_in/header.php");
-            $this->load->view("pages/leaderboard", $scores);
-            $this->load->view("templates/footer.php");
+            $this->session->set_userdata($sessiondata);
+            $this->Game_model->put_score();
+            redirect("leaderboard");
         }
         else if($number != $result[0]->random_num)
         {
-            $freezing = $result[0]->random_num + 20;
-            $freezing2 = $result[0]->random_num - 20;
-            $colder = $result[0]->random_num + 10;
-            $colder2 = $result[0]->random_num - 10;
-            $warmer = $result[0]->random_num + 5;
-            $warmer2 = $result[0]->random_num - 5;
-            $burning = $result[0]->random_num + 2;
-            $burning2 = $result[0]->random_num - 2;
+            
+            $tries = 10;
+            $tries--;
+            $freezing = $result[0]->random_num + 100;
+            $freezing2 = $result[0]->random_num - 100;
+            $colder = $result[0]->random_num + 75;
+            $colder2 = $result[0]->random_num - 75;
+            $warmer = $result[0]->random_num + 30;
+            $warmer2 = $result[0]->random_num - 30;
+            $burning = $result[0]->random_num + 10;
+            $burning2 = $result[0]->random_num - 10;
             $close = $result[0]->random_num;
             $close2 = $result[0]->random_num;
+            $data = ["tries" => $tries];
 
             if($number > $freezing || $number < $freezing2)
             {
@@ -90,32 +87,9 @@ class Game extends CI_CONTROLLER{
                 $data = ["close" => "you are so close!"];
             }
 
-            $tries = $this->session->userdata("tries");
-
-            $tries--;
-
-            $userdata = [
-                "tries" => $tries
-            ];
-
-            $this->session->set_userdata($userdata);
-
-            if($tries != 0)
-            {
-                $this->load->view("templates/logged_in/header.php");
-                $this->load->view("pages/gameplay", $data);
-                $this->load->view("templates/footer.php");
-            }
-            else if($tries <= 0)
-            {
-                $data = [
-                    "lose_message" => "Sadly enough you failed, try again!"
-                ];
-                $this->load->view("templates/logged_in/header.php");
-                $this->load->view("pages/game", $data);
-                $this->load->view("templates/footer.php");
-            }
-
+            $this->load->view("templates/logged_in/header.php");
+            $this->load->view("pages/gameplay", $data);
+            $this->load->view("templates/footer.php");
         }
     }
 }

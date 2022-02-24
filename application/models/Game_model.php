@@ -39,4 +39,10 @@ class Game_model extends CI_MODEL{
 
         return $query->result();
     }
+    
+    public function put_score()
+    {
+        $data["highest_score"] = $this->session->userdata("score");
+        $this->db->insert("users", $data);
+    }
 }
