@@ -41,6 +41,12 @@ class Game extends CI_CONTROLLER{
 
         if($number == $result[0]->random_num)
         {
+            $score = $this->session->userdata("tries") * 5;
+            $sessiondata = [
+                "score" => $score
+            ];
+            $this->session->set_userdata($sessiondata);
+            $this->Game_model->get_score();
             redirect("leaderboard");
         }
         else if($number != $result[0]->random_num)
