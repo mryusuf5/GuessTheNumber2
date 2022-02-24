@@ -1,4 +1,7 @@
 <div class="profile_container container bg-dark"><br>
+    <?php if(isset($image_success)){?><span class="message_green"><?php echo $image_success;?></span><br><br><?php }?>
+    <?php if(isset($info_success)){?><span class="message_green"><?php echo $info_success;?></span><br><br><?php }?>
+    <?php if(isset($error)){?><span class="guess_message_red_error"><?php echo $error;?></span><br><br><?php }?>
     <button id="change_info" class="btn btn-danger">Change info</button>
     <div class="profile_picture_container d-flex justify-content-center">
         <?php if($this->session->userdata("image_name")){?>

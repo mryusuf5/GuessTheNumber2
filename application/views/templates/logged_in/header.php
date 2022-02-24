@@ -21,7 +21,7 @@
                         <a href="<?php echo base_url()?>game" class="nav-link">Game</a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url()?>leaderboard" class="nav-link">Leaderboard</a>
+                        <a href="<?php echo base_url()?>Leaderboard/index" class="nav-link">Leaderboard</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" id="dropdown_button">

@@ -1,4 +1,5 @@
 <br><br>
+
 <div class="container">
     <div class="row d-flex justify-content-center">
         <form class="form-group col-6" action="<?php echo base_url()?>Game/check_number" method="POST">
@@ -12,7 +13,9 @@
             <input type="number" class="form-control" placeholder="Fill out your guess here!" name="guessed_number"><br><br>
             <input type="submit" value="Guess" class="btn btn-primary">
             <br><br>
-            <?php if(isset($tries)){?><span class="message_green">you have <?php echo $tries;?> tries left.</span><?php }?>
+            <?php if($this->session->userdata("tries") > 3){?><span class="message_green">you have <?php echo $this->session->userdata("tries")?> tries left.</span><?php }?>
+            <?php if($this->session->userdata("tries") <= 3){?><span class="guess_message_red2">you have <?php echo $this->session->userdata("tries")?> tries left.</span><?php }?>
+
         </form>
     </div>
 </div>

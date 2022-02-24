@@ -25,11 +25,17 @@ class Profile extends CI_CONTROLLER{
             "last_name" => $result[0]->last_name
         ];
 
+        $data = [
+            "info_success" => "you have successfully changed your info."
+        ];
+
         $this->session->unset_userdata("first_name", "last_name");
 
         $this->session->set_userdata($user_data);
         
-        redirect("profile");
+        $this->load->view("templates/logged_in/header");
+        $this->load->view("pages/profile", $data);
+        $this->load->view("templates/footer");
     }
 
     public function upload_image()
@@ -51,13 +57,21 @@ class Profile extends CI_CONTROLLER{
                     "image_name" => $result[0]->image_name
                 ];
                 $this->session->set_userdata($user_data);
-                redirect("profile");
+
+                $data = [
+                    "image_success" => "You have succesfully changed your profile picture."
+                ];
+
+                $this->load->view("templates/logged_in/header");
+                $this->load->view("pages/profile", $data);
+                $this->load->view("templates/footer");
             }
             else
             {
-                $this->session->set_flashdata("image_fail", "Image error, please try a different image");
                 $error = array('error' => $this->upload->display_errors());
+                $this->load->view("templates/logged_in/header");
                 $this->load->view("pages/profile", $error);
+                $this->load->view("templates/footer");
             }
                 
         }

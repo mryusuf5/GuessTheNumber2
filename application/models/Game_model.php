@@ -30,4 +30,13 @@ class Game_model extends CI_MODEL{
 
         return $query->result();
     }
+
+    public function get_scores()
+    {
+        $this->db->select("*");
+        $this->db->order_by("highest_score", "asc");
+        $query = $this->db->get("users");
+
+        return $query->result();
+    }
 }

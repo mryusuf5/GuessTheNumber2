@@ -71,6 +71,12 @@ body{
     border: 1px solid red;
     color: red;
 }
+.guess_message_red_error p{
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.116);
+    border: 1px solid red;
+    color: red;
+}
 .guess_message_blue2{
     padding: 10px;
     background-color: rgba(0, 255, 255, 0.116);
@@ -88,4 +94,23 @@ body{
     background-color: rgba(0, 255, 0, 0.116);
     border: 1px solid lime;
     color: lime;
+}
+.leaderboard_table{
+    border: 1px solid black;
+    font-size: 2rem;
+}
+.leaderboard_table th{
+    font-size: 2rem;
+    border: 1px solid black;
+}
+.leaderboard_table td{
+    border: 1px solid black;
+}
+.leaderboard_image{
+    width: 205px;
+    height: 205px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 100%;
 }
