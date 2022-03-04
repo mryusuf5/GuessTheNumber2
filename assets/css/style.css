@@ -114,3 +114,6 @@ body{
     background-repeat: no-repeat;
     margin: 10px;
 }
+.refresh_button{
+    text-align: right;
+}

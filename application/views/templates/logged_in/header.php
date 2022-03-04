@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/lux/bootstrap.min.css">
     <link rel="icon" href="<?php echo base_url()?>assets/images/favicon/favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/5010d60ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
     <title>Guessing Game</title>
 </head>
 <body>

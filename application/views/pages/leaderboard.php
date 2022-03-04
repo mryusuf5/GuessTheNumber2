@@ -3,6 +3,7 @@
     <?php if(isset($win)){?><p class="message_green text-center"><?php echo $win?></p><?php }?>
     <div class="row d-flex justify-content-center">
         <table class="col-8 leaderboard_table">
+            <p class="refresh_button col-8 fs-2">Refresh <a href=""><i class="far fa-sync"></i></a></p>
             <tr>
                 <th class="text-center">Image</th>
                 <th class="text-center">Username</th>
